@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">>
+    <h:head>
+        <ui:include src="/views/layouts/home_header.xhtml" >
+            <ui:param name="topTitle" value="Chat" />
+        </ui:include>
+
+        <ui:include src="/views/layouts/chat_header.xhtml" />
+    </h:head>
+    <h:body onload="#{chatController.onLoad()}">
+        <ui:include src="/views/layouts/chat_script.xhtml" />
+
+        <div class="outercont">
+            <h:form>
+                <div class="blackbox" id="blackboxid">
+                    <div class="logoutfloatbox">
+                        <p class="plogoutbox">Are you sure want to logout?</p>
+                        <div class="btnwrap">
+                            <h:commandButton styleClass="btnbox bg-primary btn" value="Yes" id='nobtn' actionListener="#{chatController.logOut()}"/>
+                            <button class="btnbox" id="nobtn" onclick="hidePopUp()">No</button>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+            <div class="maincontainer">
+                <div class="containerkiri1">
+                    <div class="boxprofile">
+                        <a href="./index.xhtml">
+                            <img class="profilimage2"
+                                 src="https://www.pngkey.com/png/full/24-248385_home-icon-vector-png-google-home-app-icon.png"
+                                 alt="" />
+                        </a>
+                    </div>
+                    <div class="boxkiri" id="inboxid">
+                        <div class="bluediv" id="blueinbox"></div>
+                        <img class="logo" src="../resources/img/mail.png" />
+                    </div>
+                    <a href="./howto.xhtml" target="#">
+                        <div class="boxkiri" id="howtoid">
+                            <div class="bluediv"></div>
+                            <img class="logo" src="../resources/img/box.png" />
+                        </div>
+                    </a>
+                    <a href="./about.xhtml" target="#">
+                        <div class="boxkiri" id="aboutid">
+                            <div class="bluediv"></div>
+                            <img class="logo"
+                                 src="../resources/img/star.png" />
+                        </div>
+                    </a>
+                    <div onclick="popUpGroup()" class="boxkiri" id="aboutid">
+                        <div class="bluediv"></div>
+                        <img class="logo"
+                             src="../resources/img/group.png" />
+                    </div>
+                    <div class="boxkiri" id="aboutid" onclick="popUpFriend()">
+                        <div class="bluediv"></div>
+                        <img class="logo"
+                             src="../resources/img/friend.png" />
+                    </div>
+                    <div class="boxkiri" id="aboutid" onclick="popUpPW()">
+                        <div class="bluediv"></div>
+                        <img class="logo"
+                             src="https://mpng.subpng.com/20180825/cih/kisspng-information-digitization-cryptocurrency-computer-i-antivirus-encryption-svg-png-icon-free-download-5b816c1aa87d41.5044696915352084746901.jpg"/>
+                    </div>
+                    <div class="logoutwrapper">
+                        <div class="logoutbox" onclick="showPopUp()">
+                            <img src="../resources/img/logout" alt="" class="logo" />
+                        </div>
+                    </div>
+                </div>
+                <div class="containerkiri">
+                    <div class="boxprofile2">
+                        <img class="profilimage"
+                             src="https://cdn3.iconfinder.com/data/icons/customer-support-7/32/40_robot_bot_customer_help_support_automatic_reply-512.png"
+                             alt="" />
+                        <p class="username" id="unp">#{userBean.getUserName()}</p>
+                    </div>
+                    <div class="wrapper2">
+                        <div class="groupwrapper">
+                            <input type="text" class="searchgroup" placeholder="Your Group Lists"/>
+                            <div class="divgroup">
+                                <h:form>
+                                    <ui:repeat value="#{groupUserBean.getUserGroup()}" var="group">
+                                        <a href="./chatpage.xhtml?group=${group.groupTb.id}" class="chatbubble">
+                                            <div class="chatbubble">
+                                                <p>${group.groupTb.groupName}</p>
+                                                <div class="msghor">
+                                                    <p class="msgtxt">${groupUserBean.getLatestMessage(group.groupTb.groupChatTbs)}</p>
+                                                    <div class="tooltip" onclick="copyFunction(${group.id})">
+                                                        <img class="copyicon" src="https://cdn3.iconfinder.com/data/icons/basic-1-blue-series/64/a-06-512.png"/>
+                                                        <span class="tooltiptext" id="tttext">ID: ${group.id}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </ui:repeat>
+                                </h:form>
+                            </div>
+                        </div>
+                        <div class="friendwrapper">
+                            <input type="text" class="searchgroup" placeholder="Your Friend Lists"/>
+                            <div class="divgroup">
+<!--                                <c:forEach items="${userfriend}" var="user">
+                                    <div class="chatbubble">
+                                        <p>${user.userName}</p>
+                                        <div class="msghor">
+                                            <p onclick="popUpInvite('${user.id}')" class="msgtxt">Invite to a group</p>
+                                            <div>
+                                                <a href="./friend?adder=${user.id}">
+                                                    <img class="copyicon" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/stop-339-1080283.png"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kananwrapper">
+                    <div class="containerkanan">
+
+                        <div id="chatid" class="chatbox">
+<!--                            <c:forEach items="${groupchat}" var="chat">
+                                <script>
+                                    if ("${chat.message}" == "spot") {
+                                        replyspot();
+                                    }
+                                    console.log("still goes through");
+                                    var senderID = "${chat.senderID}";
+                                    var userID = "<%= request.getSession().getAttribute("user")%>";
+                                    var chatBox = document.getElementById("chatid");
+                                    var div = document.createElement("div");
+                                    var span = document.createElement("span");
+                                    var span2 = document.createElement("p");
+                                    var br = document.createElement("br");
+                                    if (senderID === userID) {
+                                        div.style.textAlign = "right";
+                                        div.style.marginRight = "20px";
+                                        span2.style.textAlign = "right";
+                                        span2.style.paddingRight = "20px";
+                                    } else {
+                                        div.style.marginLeft = "0px";
+                                        span2.style.paddingLeft = "20px";
+                                    }
+                                    span.style.borderRadius = "15px";
+                                    span.style.marginLeft = "20px";
+                                    span.style.paddingTop = "12px";
+                                    span.style.paddingBottom = "12px";
+                                    span.style.paddingRight = "25px";
+                                    span.style.paddingLeft = "25px";
+                                    span.style.backgroundColor = "#4c89d4";
+                                    span.style.color = "white";
+                                    span.style.fontFamily = "productsans";
+                                    span.style.fontSize = "1em";
+                                    div.style.borderRadius = "15px";
+                                    div.style.marginTop = "35px";
+                                    span.style.marginBottom = "15px";
+                                    span.textContent = "${chat.message}";
+                                    span2.textContent = "${chat.username}";
+                                    span2.style.color = "#615f5f";
+                                    div.appendChild(span);
+                                    chatBox.appendChild(div);
+                                    chatBox.appendChild(span2);
+                                </script>
+
+                            </c:forEach>-->
+                        </div>
+                        <div class="wrapperinbox">
+                            <div class="inboxsend">
+                                <form action="groupchat" method="POST" id="sendForm"></form>
+                                <input id="inputid" type="text" placeholder="Type Message…" name="messageGroup" form="sendForm" 
+                                       pattern="[A-Za-z0-9 ]+" 
+                                       oninvalid="this.setCustomValidity(' ')"
+                                       oninput="setCustomValidity(' ')"
+                                       onchange="try {
+                                                   setCustomValidity('')
+                                               } catch (e) {
+                                               }"
+                                       />
+                                <button type="submit" name="group" form="sendForm" class="btnSend">
+                                    <img class="logo" onclick="append()" src="../resources/img/send.png" alt="" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="startchat">
+                        <img src="https://image.freepik.com/free-vector/online-communication-with-students-distance-learning_82574-6145.jpg"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="popupGroup" id="popupGroup">
+            <div class="groupDivWhite">
+                <span class="toptext">CREATE YOUR GROUP CHAT</span>
+                <span class="topdesctext">Make a place for you to hang out with your communities and friends.</span>
+                <h:form>
+
+                    <div class="centerdiv">
+                        <div class="leftdiv">
+                            <p class="pgroupname">Create a Group</p>
+                            <p:inputText class="inputgroup" value="#{groupBean.groupTB.groupName}" placeholder="New Group Name"/>
+                            <span class="pgroupname">OR</span>
+                            <p class="pgroupname">Join a Group</p>
+                            <p:inputText value="#{groupUserBean.groupUserTb.groupTb.id}" class="inputgroup" placeholder="Group ID"/>
+                            <h:commandButton actionListener="#{groupUserBean.joinGroup()}" class="joinbtn" value="JOIN"/>
+                        </div>
+                        <div class="rightdiv">
+                            <img class="comimg" src="https://cdn1.iconfinder.com/data/icons/network-and-comminications-flat-circle-shadow-vo-1/120/control__data__share__community__social__communication__connect-512.png"/>
+                        </div>
+                    </div>
+
+                    <div class="wrappercreate">
+                        <a onclick="closeGroupPopup()" href="#" class="topdesctext">Back</a>
+                        <h:commandButton value="CREATE" actionListener="#{groupBean.createGroup()}" class="joinbtn2"/>
+                    </div>
+                </h:form>
+
+            </div>
+        </div>
+        <div class="popupGroup" id="popupFriend">
+            <div class="groupDivWhite">
+                <span class="toptext">FIND YOUR FRIENDS OR COLLEAGUES</span>
+                <span class="topdesctext">Chat personally with your relatives and friends.</span>
+                <div class="centerdiv">
+                    <div class="leftdiv2">
+                        <p class="pgroupname">FIND YOUR FRIEND</p>
+                        <form action="friend" method="POST" id="friendForm" form="friendForm"></form>
+                        <input class="inputgroup" placeholder="Friend Username" name="userfriend" form="friendForm"/>
+                    </div>
+                    <div class="rightdiv">
+                        <img class="comimg" src="https://cdn1.iconfinder.com/data/icons/network-and-comminications-flat-circle-shadow-vo-1/120/control__data__share__community__social__communication__connect-512.png"/>
+                    </div>
+                </div>
+                <div class="wrappercreate">
+                    <a onclick="closeFriendPopup()" href="#" class="topdesctext">Back</a>
+                    <button type="submit" class="joinbtn2" form="friendForm">ADD</button>
+                </div>
+            </div>
+        </div>
+        <div class="popupGroup" id="popupInvite">
+            <div class="groupDivWhite">
+                <span class="toptext">INVITE YOUR FRIENDS OR COLLEAGUES</span>
+                <span class="topdesctext">Chat personally with your relatives and friends.</span>
+                <div class="centerdiv">
+                    <div class="leftdiv2">
+                        <p class="pgroupname">INVITE YOUR FRIEND</p>
+                        <form action="invite" method="POST" id="inviteForm"></form>
+                        <input class="inputgroup" placeholder="Friend ID" name="userfriend" form="inviteForm" id="inputInvite"/>
+                        <input class="inputgroup" placeholder="Group ID" name="groupid" form="inviteForm"/>
+                    </div>
+                    <div class="rightdiv">
+                        <img class="comimg" src="https://cdn1.iconfinder.com/data/icons/network-and-comminications-flat-circle-shadow-vo-1/120/control__data__share__community__social__communication__connect-512.png"/>
+                    </div>
+                </div>
+                <div class="wrappercreate">
+                    <a onclick="closeInvitePopup()" href="#" class="topdesctext">Back</a>
+                    <button type="submit" class="joinbtn2" form="inviteForm">INVITE</button>
+                </div>
+            </div>
+        </div>
+        <div class="popupGroup" id="popupPW">
+            <div class="groupDivWhite">
+                <span class="toptext">Change Your Password</span>
+                <span class="topdesctext">Secure your account</span>
+                <div class="centerdiv">
+                    <div class="leftdiv2">
+                        <p class="pgroupname">Change Password</p>
+                        <form action="changepassword" method="POST" id="pwForm"></form>
+                        <input required="true" type="password" class="inputgroup" placeholder="New Password" name="newpassword" form="pwForm"/>
+                    </div>
+                    <div class="rightdiv">
+                        <img class="comimg" src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Lock-512.png"/>
+                    </div>
+                </div>
+                <div class="wrappercreate">
+                    <a onclick="closePWPopUp()" href="#" class="topdesctext">Back</a>
+                    <button type="submit" class="joinbtn2" form="pwForm">CHANGE</button>
+                </div>
+            </div>
+        </div>
+
+        <ui:include src="/views/layouts/chat_script.xhtml" />
+    </h:body>
+</html>
+

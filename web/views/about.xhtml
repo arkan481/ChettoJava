@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:include src="/views/layouts/home_header.xhtml" >
+            <ui:param name="topTitle" value="About" />
+        </ui:include>
+    </h:head>
+    <h:body onload="showHr(2)">
+        <div class="popcontainer">
+            <div class="maincontainer">
+                <ui:include src="/views/layouts/index_navbar.xhtml"></ui:include>
+                <div class="centercontainer">
+                    <div class="textleft">
+                        <p class="pabout">Hello my name is Mibot</p>
+                        <p class="pdesc">I was built in year 2020 using 3 wonderful technologies. CSS, HTML, <br /> and Javascript. My creators also makes me stronger by embedding <br /> informative and fun application like Spotify, Wikipedia, and <br /> source unsplash!.</p>
+                        <p class="pdesc">Uh Oh, while you're here, please meet my creators  and get <br /> in touch with them. Click on their profile to say hi to them <br /> on github!.</p>
+                        <div class="horimg">
+                            <a href="https://github.com/arkan481">
+                                <div class="userdiv">
+                                    <img src="https://avatars2.githubusercontent.com/u/6422482?s=400&amp;u=1e8724230d8d2a259d754a1b580af5e52db552f4&amp;v=4" alt="" class="userimg"/>
+                                    <p class="pdesc">Arkan Haryo</p>
+                                </div>
+                            </a>
+                            <a href="https://github.com/finobasri">
+                                <div class="userdiv" onclick="userFino()">
+                                    <img src="https://smashel.com/wp-content/uploads/2017/12/chat-bot.png" alt="" class="userimg"/>
+                                    <p class="pdesc">Fino Basri</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="imageright">
+                        <img src="../resources/img/robotimg.png" alt="robotimg" class="imgrobot"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ui:include src="/views/layouts/index_script.xhtml"></ui:include>
+    </h:body>
+</html>
+

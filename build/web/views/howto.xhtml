@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:include src="/views/layouts/home_header.xhtml" >
+            <ui:param name="topTitle" value="How-To" />
+        </ui:include>
+    </h:head>
+    <h:body onload="showDivs(1)">
+        <div class="popcontainer">
+            <div class="maincontainer">
+                <ui:include src="/views/layouts/index_navbar.xhtml"></ui:include>
+                <div class="centercontainer">
+                    <div class="textleft">
+                        <div class="howbox">
+                            <img src="https://image.flaticon.com/icons/svg/130/130882.svg" alt="" class="arrow" onclick="changeSlide(-1)" />
+                                <div class="tutorwrap">
+                                    <div class="tutorbox">
+                                        <img src="https://developer.spotify.com/assets/FBImage.png" alt="" class="imgtutor" />
+                                        <p class="tutorp">Spotify</p>
+                                        <p class="howp">To request a song with spotify you just have to write --spot in mibot chatbox this will generate one random song for you to enjoy!</p>
+                                    </div>
+                                    <div class="tutorbox">
+                                        <img src="https://cdn.naturettl.com/wp-content/uploads/2017/08/22011713/best-camera-landscape-photography-5-800x534.jpg" alt="" class="imgtutor" />
+                                        <p class="tutorp">Unsplash Source</p>
+                                        <p class="howp">You can request any image by typing --img.'imagename' without quotation mark in mibot chatbox!</p>
+                                    </div>
+                                    <div class="tutorbox">
+                                        <img src="https://multisim-insigneo.org/wp-content/uploads/2015/06/Wikipedia-Logo-on-Black-300x169.jpg" alt="" class="imgtutor"/>
+                                        <p class="tutorp">Wikipedia</p>
+                                        <p class="howp">Request any desired useful information with wikipedia by typing --wiki.'yoursearch' in mibot chatbox without quotation mark!</p>
+                                    </div>
+                                    <div class="tutorbox">
+                                        <img src="https://us.123rf.com/450wm/peshkov/peshkov1602/peshkov160200286/52286082-blank-black-diary-cover-with-cup-of-coffee-eyeglasses-and-cd-disk-on-wooden-table-mock-up.jpg?ver=6" alt="" class="imgtutor" />
+                                            <p class="tutorp">Notes</p>
+                                            <p class="howp">Store your personal note to mibot privately by typing --savenote.note1,note2 with each note seperated by comma, and to see your stored note just type --seenote in mibot chatbox!</p>
+                                    </div>
+                                </div>
+                                <img src="https://image.flaticon.com/icons/svg/32/32213.svg" alt="" class="arrow" onclick="changeSlide(1)"/>
+                        </div>
+                    </div>
+                    <div class="imageright">
+                        <img src="../resources/img/robotimg.png" alt="robotimg" class="imgrobot"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ui:include src="/views/layouts/index_script.xhtml"></ui:include>
+    </h:body>
+</html>
+

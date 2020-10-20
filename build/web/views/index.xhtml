@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:include src="/views/layouts/home_header.xhtml" >
+            <ui:param name="topTitle" value="Home" />
+        </ui:include>
+    </h:head>
+    <h:body>
+        <div class="popcontainer">
+            <div class="maincontainer">
+                <ui:include src="/views/layouts/index_navbar.xhtml"></ui:include>
+                <div class="usernamediv">
+                    <img src="../resources/img/iconprofile.png" class="iconprofile" id="profid"/>
+                    <span id="unspan">#{userBean.getUserName()}</span>
+                </div>
+                <div class="centercontainer">
+                    <div class="textleft">
+                        <p class="pchetto">Chetto Project</p>
+                        <p class="pweb">Web Application</p>
+                        <p class="pdesc">Chat with your friends, family, or colleagues along with interactive bot <br> </br> that features Spotify's Song, Wikipedia information and <br> </br> notes storer!</p>
+                        <div class="btnwrapper">
+                            <a href="./login.xhtml"><button id="btnStart">Chat Now</button></a>
+                        </div>
+                    </div>
+                    <div class="imageright">
+                        <img src="../resources/img/robotimg.png" alt="robotimg" class="imgrobot"/>
+                    </div>
+                </div>
+            </div>
+            <div class="popupbox" id="boxpop">
+                <div class="popupouter">
+                    <p>Your Name</p>
+                    <input type="text" id="nameinput" placeholder="name" />
+                    <div class="btncont">
+                        <button id="btnok" onclick="redirectToChat()">OK</button>
+                        <button id="btncancel" onclick="hidePopUp()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ui:include src="/views/layouts/index_script.xhtml"></ui:include>
+    </h:body>
+</html>
+

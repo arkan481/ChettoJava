@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <ui:include src="/views/layouts/login_header.xhtml" >
+            <ui:param name="topTitle" value="Signup" />
+        </ui:include>
+    </h:head>
+    <h:body>
+
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-title p-b-33">
+                            Account Sign Up
+                        </span>
+                        <h:form>
+                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                <p:inputText class="input100" type="text" value="#{userBean.newUser.username}" placeholder="Username" />
+                                <span class="focus-input100-1"></span>
+                                <span class="focus-input100-2"></span>
+                            </div>
+
+                            <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+                                <p:password match="confPass" id="signupPass" value="#{userBean.newUser.password}" class="input100" placeholder="Password" validatorMessage="Password doesn't match!" >
+                                </p:password>
+                                <span class="focus-input100-1"></span>
+                                <span class="focus-input100-2"></span>
+                                <h:message for="signupPass" id="text-dange2r" class="mt-4 mb-4 text-center text-danger"/>
+                            </div>
+
+                            <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+                                <p:password id="confPass" value="#{userBean.cofirmPassword}" class="input100" placeholder="Confirm Password" validatorMessage="Password must be greater than 8 characters!" >
+                                    <f:validateLength minimum="8"></f:validateLength>
+                                </p:password>
+                                <span class="focus-input100-1"></span>
+                                <span class="focus-input100-2"></span>
+                                <h:message for="confPass" id="asd" class="mt-4 mb-4 text-center text-danger"/>
+                            </div>
+                            
+                            <div class="container-login100-form-btn m-t-20">
+                                <h:commandButton class="login100-form-btn" actionListener="#{userBean.signup()}" value="Sign Up"/>
+                            </div>
+                        </h:form>
+
+
+                        <div class="text-center p-t-45 p-b-4">
+                            <span class="txt1 wrong" id="wrongSpan">
+                            </span>
+                        </div>
+
+                        <div class="text-center p-t-45">
+                            <span class="txt1">
+                                Already have an account?
+                            </span>
+
+                            <a href="./login.xhtml" class="txt2 hov1">
+                                Sign In
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <ui:include src="/views/layouts/login_script.xhtml"></ui:include>
+    </h:body>
+</html>
+

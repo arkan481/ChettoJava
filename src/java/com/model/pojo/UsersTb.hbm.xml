@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 20, 2020 1:17:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.model.pojo.UsersTb" table="users_tb" catalog="chettoDB" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="20" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" not-null="true" />
+        </property>
+        <set name="userFriendTbsForAddee" table="user_friend_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="addee" not-null="true" />
+            </key>
+            <one-to-many class="com.model.pojo.UserFriendTb" />
+        </set>
+        <set name="groupChatTbs" table="group_chat_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sender_id" not-null="true" />
+            </key>
+            <one-to-many class="com.model.pojo.GroupChatTb" />
+        </set>
+        <set name="groupUserTbs" table="group_user_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.model.pojo.GroupUserTb" />
+        </set>
+        <set name="userFriendTbsForAdder" table="user_friend_tb" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="adder" not-null="true" />
+            </key>
+            <one-to-many class="com.model.pojo.UserFriendTb" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,359 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 16, 2020, 12:37:25 PM
+    Author     : Fino Basri
+*/
+/* ########### DEFAULT ############# */
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url('../resources/img/bodybg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Poppins;
+}
+
+.maincontainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ################ NAV BAR SYLIZATION ################# */
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.centernav {
+    flex-direction: row;
+    display: flex;
+}
+
+.navhome {
+    margin-left: 60px;
+    color: #1AAFD3;
+    display: flex;
+    flex-direction: column;
+}
+
+.navhome hr {
+    display: inline-block;
+    width: 40%;
+}
+
+/* ############# CENTER CONTAINER STYLIZATION############ */
+
+.centercontainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.textleft {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
+.usernamediv {
+    color: white;
+    margin-left: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.iconprofile {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.imgrobot {
+    float: right;
+    width: 70%;
+    height: auto;
+}
+
+.pchetto {
+    line-height: 0;
+    color: white;
+    font-size: 3em;
+    font-weight: bolder;
+}
+
+.pweb {
+    color: #1AAFD3;
+    opacity: 50%;
+    font-size: 2em;
+    line-height: 0;
+}
+
+.pdesc {
+    color: #1AAFD3;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+.btnwrapper {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+}
+
+#btnStart {
+    border-radius: 32px;
+    width: 40%;
+    height: 100%;
+    border-color: teal;
+    background-color: rebeccapurple;
+    opacity: 60%;
+    border-width: 1px;
+    color: white;
+    text-transform: uppercase;
+    font-family: Poppins;
+}
+
+
+/* ########### POP UP BOX STYLIZATION ################ */
+.popupbox {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    display: none;
+    /* INVISIBLE */
+}
+
+.popcontainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.popupouter {
+    padding-right: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    width: 30%;
+    height: 30%;
+    background-color: darkgray;
+}
+
+.popupouter p {
+    text-align: center;
+    color: black;
+}
+
+.popupouter input {
+    margin-top: 20px;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+}
+
+.btncont {
+    padding-bottom: 30px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#btnok {
+    width: 30%;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: green;
+}
+
+#btncancel {
+    width: 30%;
+    height: 50px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: darkred;
+}
+
+button:hover {
+    background-color :#ffbf00 !important;
+}
+
+.navhome:hover {
+    cursor: pointer;
+    color: white;
+}
+
+#hrabout {
+    display: none;
+}
+
+#hrhow {
+    display: none;
+}
+
+/*About us stylization*/
+
+.pabout {
+    color: #1AAFD3;
+    font-size: 2em;
+}
+
+.horimg {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.userdiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userimg {
+    width: 50px;
+    height: auto;
+}
+
+/*How to stylization*/
+
+.howbox {
+    width: 500px;
+    height: 800px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.arrow {
+    width: 30px;
+    height:40px;
+}
+
+.tutorwrap {
+  flex-grow: 1;
+  height: 400px;
+  padding: 70px;
+}
+
+.tutorbox {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(15, 15, 15);
+    border-radius: 10px;
+    flex-direction: column;
+    border: 2px white double;
+}
+
+.imgtutor {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 40%;
+}
+
+.tutorp {
+    text-align: center;
+    font-size: 1.2em;
+    color: white;
+    font-family: Poppins;
+}
+
+.howp {
+    font-size: 0.9em;
+    text-align: center;
+    font-family: Poppins;
+    color: white;
+}
+
+/* ############ MOBILE STYLIZATION ########### */
+
+@media(max-width: 900px) {
+
+    .maincontainer {
+        height: 100%;
+    }
+
+    .popupouter {
+        width: 60%;
+        height: 35%;
+        justify-content: space-evenly;
+    }
+
+    .pchetto {
+        line-height: 50px;
+    }
+
+    body {
+        background-size: inherit;
+        height: 100%;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .centernav {
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .navhome {
+        margin: 0;
+    }
+
+    .centercontainer {
+        margin-top: 39px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .textleft {
+        text-align: center;
+        width: 100%;
+        height: auto;
+    }
+
+    .imageright {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .imgrobot {
+        width: 80%;
+        float: unset;
+    }
+}

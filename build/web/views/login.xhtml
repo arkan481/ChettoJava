@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <ui:include src="/views/layouts/login_header.xhtml" >
+            <ui:param name="topTitle" value="Login" />
+        </ui:include>
+    </h:head>
+    <h:body onload="#{userBean.onLoad()}">
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-title p-b-33">
+                            Account Login
+                        </span>
+                        <h:form>
+                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                <p:inputText class="input100" type="text" value='#{userBean.newUser.username}' placeholder="Username" required="true" />
+                                <span class="focus-input100-1"></span>
+                                <span class="focus-input100-2"></span>
+                            </div>
+
+                            <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+                                <p:inputText class="input100" type="password" value='#{userBean.newUser.password}' placeholder="Password" required="true" />
+                                <span class="focus-input100-1"></span>
+                                <span class="focus-input100-2"></span>
+                            </div>
+
+                            <div class="container-login100-form-btn m-t-20">
+                                <h:commandButton class="login100-form-btn" actionListener="#{userBean.signIn()}" value="Sign In"/>
+                            </div>
+                            <div class="text-center p-t-45 p-b-4">
+                                <h:messages id="globalLogin" class='txt1 wrong'/>
+                            </div>
+
+                        </h:form>
+
+                        <div class="text-center p-t-25">
+                            <span class="txt1">
+                                Create an account?
+                            </span>
+
+                            <a href="./signup.xhtml" class="txt2 hov1">
+                                Sign up
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <ui:include src="/views/layouts/login_script.xhtml"></ui:include>
+    </h:body>
+</html>
+
