@@ -60,9 +60,9 @@ public class UserDAO {
     public UsersTb getUsernameById(int id) {
         Session session
                 = HibernateUtil.getSessionFactory().openSession();
-        
+
         UsersTb user = new UsersTb();
-        
+
         try {
             session.beginTransaction();
             Query qu = session.createQuery("From UsersTb U where U.id=:id");
@@ -75,7 +75,29 @@ public class UserDAO {
         } finally {
             session.close();
         }
-        
+
+        return user;
+    }
+
+    public UsersTb getByUsername(String username) {
+        Session session
+                = HibernateUtil.getSessionFactory().openSession();
+
+        UsersTb user = new UsersTb();
+
+        try {
+            session.beginTransaction();
+            Query qu = session.createQuery("From UsersTb U where U.username=:username");
+            qu.setParameter("username", username);
+            user = (UsersTb) qu.uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
         return user;
     }
 

@@ -219,6 +219,7 @@
                         <a onclick="closeGroupPopup()" href="#" class="topdesctext">Back</a>
                         <h:commandButton value="CREATE" actionListener="#{groupBean.createGroup()}" class="joinbtn2"/>
                     </div>
+                    
                 </h:form>
 
             </div>
@@ -227,20 +228,25 @@
             <div class="groupDivWhite">
                 <span class="toptext">FIND YOUR FRIENDS OR COLLEAGUES</span>
                 <span class="topdesctext">Chat personally with your relatives and friends.</span>
-                <div class="centerdiv">
-                    <div class="leftdiv2">
-                        <p class="pgroupname">FIND YOUR FRIEND</p>
-                        <form action="friend" method="POST" id="friendForm" form="friendForm"></form>
-                        <input class="inputgroup" placeholder="Friend Username" name="userfriend" form="friendForm"/>
+
+                <h:form>
+
+                    <div class="centerdiv">
+                        <div class="leftdiv2">
+                            <p class="pgroupname">FIND YOUR FRIEND</p>
+                            <p:inputText class="inputgroup" value="#{friendBean.username}" placeholder="Friend Username" />
+                        </div>
+                        <div class="rightdiv">
+                            <img class="comimg" src="https://cdn1.iconfinder.com/data/icons/network-and-comminications-flat-circle-shadow-vo-1/120/control__data__share__community__social__communication__connect-512.png"/>
+                        </div>
                     </div>
-                    <div class="rightdiv">
-                        <img class="comimg" src="https://cdn1.iconfinder.com/data/icons/network-and-comminications-flat-circle-shadow-vo-1/120/control__data__share__community__social__communication__connect-512.png"/>
+                    <div class="wrappercreate">
+                        <a onclick="closeFriendPopup()" href="#" class="topdesctext">Back</a>
+                        <h:commandButton class="joinbtn2" value="ADD" actionListener="#{friendBean.addFriend()}"/>
                     </div>
-                </div>
-                <div class="wrappercreate">
-                    <a onclick="closeFriendPopup()" href="#" class="topdesctext">Back</a>
-                    <button type="submit" class="joinbtn2" form="friendForm">ADD</button>
-                </div>
+
+                </h:form>
+
             </div>
         </div>
         <div class="popupGroup" id="popupInvite">
