@@ -9,6 +9,7 @@ import com.dao.FriendDAO;
 import com.dao.UserDAO;
 import com.model.pojo.UserFriendTb;
 import com.model.pojo.UsersTb;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -25,7 +26,7 @@ public class FriendBean {
     public UserFriendTb userFriendTb = new UserFriendTb();
     private FriendDAO friendDAO = new FriendDAO();
     private UserDAO userDAO = new UserDAO();
-    
+
     public String username;
 
     /**
@@ -37,16 +38,31 @@ public class FriendBean {
     public void addFriend() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-        
+
         UsersTb adder = new UsersTb();
         UsersTb addee = userDAO.getByUsername(username);
-        
+
         adder.setId(Integer.valueOf(session.getAttribute("user_session_id").toString()));
-        
+
         userFriendTb.setUsersTbByAdder(adder);
-        userFriendTb.setUsersTbByAddee(addee);        
-        
+        userFriendTb.setUsersTbByAddee(addee);
+
         friendDAO.addFriend(userFriendTb);
+    }
+
+    public List<UserFriendTb> getUserFriend() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+
+        List<UserFriendTb> userFriendTbs = friendDAO.getUserFriend(Integer.parseInt(session.getAttribute("user_session_id").toString()));
+
+        return userFriendTbs;
+
+    }
+
+    public String deleteFriend(UserFriendTb friend) {
+        friendDAO.delete(friend);
+        return null;
     }
 
     public void setUsername(String username) {

@@ -270,7 +270,8 @@ function popUpInvite(userID) {
     var inputInvite = document.getElementById("inputInvite");
     var groupPopUp = document.getElementById("popupInvite");
     groupPopUp.style.display = "flex";
-    inputInvite.value = userID;
+//    inputInvite.value = userID;
+    $("#inputInvite").val(userID);
     console.log("this: "+userID);
 }
 

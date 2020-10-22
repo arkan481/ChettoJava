@@ -11,7 +11,7 @@ public class GroupUserTb  implements java.io.Serializable {
 
      private Integer id;
      private GroupTb groupTb = new GroupTb();
-     private UsersTb usersTb;
+     private UsersTb usersTb = new UsersTb();
 
     public GroupUserTb() {
     }

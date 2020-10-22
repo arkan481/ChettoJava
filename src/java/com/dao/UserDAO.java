@@ -101,4 +101,16 @@ public class UserDAO {
         return user;
     }
 
+    public void updatePassword(UsersTb usersTb) {
+        Session session
+                = HibernateUtil.getSessionFactory().openSession();
+        
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+    }
+
 }

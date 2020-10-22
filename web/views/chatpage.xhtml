@@ -105,19 +105,27 @@
                         <div class="friendwrapper">
                             <input type="text" class="searchgroup" placeholder="Your Friend Lists"/>
                             <div class="divgroup">
-<!--                                <c:forEach items="${userfriend}" var="user">
-                                    <div class="chatbubble">
-                                        <p>${user.userName}</p>
-                                        <div class="msghor">
-                                            <p onclick="popUpInvite('${user.id}')" class="msgtxt">Invite to a group</p>
-                                            <div>
-                                                <a href="./friend?adder=${user.id}">
-                                                    <img class="copyicon" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/stop-339-1080283.png"/>
-                                                </a>
+
+                                <h:form>
+                                    <ui:repeat value="#{friendBean.getUserFriend()}" var="friend">
+
+
+                                        <div class="chatbubble">
+                                            <p>${friend.usersTbByAddee.username}</p>
+                                            <div class="msghor">
+                                                <p onclick="popUpInvite('${friend.usersTbByAddee.id}')" class="msgtxt">Add to a group</p>
+                                                <div>
+                                                    <h:commandLink action="#{friendBean.deleteFriend(friend)}">
+                                                        <h:graphicImage class="copyicon" value="https://cdn.iconscout.com/icon/premium/png-256-thumb/stop-339-1080283.png"/>
+                                                    </h:commandLink>
+                                                </div>
+
                                             </div>
                                         </div>
-                                    </div>
-                                </c:forEach>-->
+
+                                    </ui:repeat>
+                                </h:form>
+
                             </div>
                         </div>
                     </div>
@@ -219,7 +227,7 @@
                         <a onclick="closeGroupPopup()" href="#" class="topdesctext">Back</a>
                         <h:commandButton value="CREATE" actionListener="#{groupBean.createGroup()}" class="joinbtn2"/>
                     </div>
-                    
+
                 </h:form>
 
             </div>
@@ -250,25 +258,29 @@
             </div>
         </div>
         <div class="popupGroup" id="popupInvite">
-            <div class="groupDivWhite">
-                <span class="toptext">INVITE YOUR FRIENDS OR COLLEAGUES</span>
-                <span class="topdesctext">Chat personally with your relatives and friends.</span>
-                <div class="centerdiv">
-                    <div class="leftdiv2">
-                        <p class="pgroupname">INVITE YOUR FRIEND</p>
-                        <form action="invite" method="POST" id="inviteForm"></form>
-                        <input class="inputgroup" placeholder="Friend ID" name="userfriend" form="inviteForm" id="inputInvite"/>
-                        <input class="inputgroup" placeholder="Group ID" name="groupid" form="inviteForm"/>
+
+            <h:form prependId="false">
+
+                <div class="groupDivWhite">
+                    <span class="toptext">ADD YOUR FRIENDS OR COLLEAGUES TO A GROUP</span>
+                    <span class="topdesctext">Chat personally with your relatives and friends.</span>
+                    <div class="centerdiv">
+                        <div class="leftdiv2">
+                            <p class="pgroupname">INVITE YOUR FRIEND</p>
+                            <p:inputText class="inputgroup" placeholder="Friend ID" id="inputInvite"/>
+                            <p:inputText class="inputgroup" placeholder="Group ID" value="#{groupUserBean.groupUserTb.groupTb.id}"/>
+                        </div>
+                        <div class="rightdiv">
+                            <img class="comimg" src="https://cdn1.iconfinder.com/data/icons/network-and-comminications-flat-circle-shadow-vo-1/120/control__data__share__community__social__communication__connect-512.png"/>
+                        </div>
                     </div>
-                    <div class="rightdiv">
-                        <img class="comimg" src="https://cdn1.iconfinder.com/data/icons/network-and-comminications-flat-circle-shadow-vo-1/120/control__data__share__community__social__communication__connect-512.png"/>
+                    <div class="wrappercreate">
+                        <a onclick="closeInvitePopup()" href="#" class="topdesctext">Back</a>
+                        <h:commandButton actionListener="#{groupUserBean.inviteToGroup()}" type="submit" class="joinbtn2" value="ADD" />
                     </div>
                 </div>
-                <div class="wrappercreate">
-                    <a onclick="closeInvitePopup()" href="#" class="topdesctext">Back</a>
-                    <button type="submit" class="joinbtn2" form="inviteForm">INVITE</button>
-                </div>
-            </div>
+
+            </h:form>
         </div>
         <div class="popupGroup" id="popupPW">
             <div class="groupDivWhite">

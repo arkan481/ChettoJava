@@ -8,6 +8,7 @@ package com.controller;
 import com.dao.GroupUserDAO;
 import com.model.pojo.GroupChatTb;
 import com.model.pojo.GroupUserTb;
+import com.model.pojo.UsersTb;
 import java.util.List;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
@@ -35,8 +36,13 @@ public class GroupUserBean {
     public void joinGroup() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        
+        int currentUserID = Integer.parseInt(session.getAttribute("user_session_id").toString());
+        
+        UsersTb currentUser = new UsersTb();
+        currentUser.setId(currentUserID);
 
-//        groupUserTb.setUserId(Integer.parseInt(session.getAttribute("user_session_id").toString()));
+        groupUserTb.setUsersTb(currentUser);
         groupUserDAO.createGroup(groupUserTb);
     }
 
@@ -48,6 +54,10 @@ public class GroupUserBean {
 
         return groupUserTbs;
 
+    }
+    
+    public void inviteToGroup() {
+        groupUserDAO.createGroup(groupUserTb);
     }
 
     public String getLatestMessage(Set<GroupChatTb> groupChatTbs) {
