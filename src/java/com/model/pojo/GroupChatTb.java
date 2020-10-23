@@ -47,6 +47,7 @@ public class GroupChatTb  implements java.io.Serializable {
     public void setUsersTb(UsersTb usersTb) {
         this.usersTb = usersTb;
     }
+    
     public String getMessage() {
         return this.message;
     }

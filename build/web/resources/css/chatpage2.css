@@ -527,6 +527,12 @@ button {
     background-color: transparent !important;
 }
 
+.btnSend {
+    width: 100px;
+    height: auto;
+    background-color: #006dcc;
+}
+
 .startchat {
     height: 100%;
     display: flex;

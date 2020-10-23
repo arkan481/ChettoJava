@@ -5,9 +5,6 @@
         <group>
             <file>file:/Users/arkan481/NetBeansProjects/TestChetto/web/views/chatpage.xhtml</file>
             <file>file:/Users/arkan481/NetBeansProjects/TestChetto/src/java/com/controller/GroupUserBean.java</file>
-            <file>file:/Users/arkan481/NetBeansProjects/TestChetto/nbproject/build-impl.xml</file>
-            <file>file:/Users/arkan481/NetBeansProjects/TestChetto/web/resources/js/chatpage2.js</file>
-            <file>file:/Users/arkan481/NetBeansProjects/TestChetto/src/java/com/model/pojo/GroupUserTb.java</file>
             <file>file:/Users/arkan481/NetBeansProjects/TestChetto/src/java/com/dao/GroupUserDAO.java</file>
         </group>
     </open-files>

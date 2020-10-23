@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">>
     <h:head>
         <ui:include src="/views/layouts/home_header.xhtml" >
             <ui:param name="topTitle" value="Chat" />
@@ -13,7 +14,6 @@
     </h:head>
     <h:body onload="#{chatController.onLoad()}">
         <ui:include src="/views/layouts/chat_script.xhtml" />
-
         <div class="outercont">
             <h:form>
                 <div class="blackbox" id="blackboxid">
@@ -86,14 +86,14 @@
                             <div class="divgroup">
                                 <h:form>
                                     <ui:repeat value="#{groupUserBean.getUserGroup()}" var="group">
-                                        <a href="./chatpage.xhtml?group=${group.groupTb.id}" class="chatbubble">
+                                        <a href="./chatpage.xhtml?group=#{group.groupTb.id}" class="chatbubble">
                                             <div class="chatbubble">
                                                 <p>${group.groupTb.groupName}</p>
                                                 <div class="msghor">
                                                     <p class="msgtxt">${groupUserBean.getLatestMessage(group.groupTb.groupChatTbs)}</p>
-                                                    <div class="tooltip" onclick="copyFunction(${group.id})">
+                                                    <div class="tooltip" onclick="copyFunction(#{group.groupTb.id})">
                                                         <img class="copyicon" src="https://cdn3.iconfinder.com/data/icons/basic-1-blue-series/64/a-06-512.png"/>
-                                                        <span class="tooltiptext" id="tttext">ID: ${group.id}</span>
+                                                        <span class="tooltiptext" id="tttext">ID: #{group.groupTb.id}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,14 +134,14 @@
                     <div class="containerkanan">
 
                         <div id="chatid" class="chatbox">
-<!--                            <c:forEach items="${groupchat}" var="chat">
+                            <ui:repeat value="#{groupChatBean.getGroupChatByGroupId(param['group'])}" var="chat">
                                 <script>
-                                    if ("${chat.message}" == "spot") {
+                                    if ("${chat.message}" === "spot") {
                                         replyspot();
                                     }
                                     console.log("still goes through");
-                                    var senderID = "${chat.senderID}";
-                                    var userID = "<%= request.getSession().getAttribute("user")%>";
+                                    var senderID = "${chat.usersTb.id}";
+                                    var userID = "#{user_session_id}";
                                     var chatBox = document.getElementById("chatid");
                                     var div = document.createElement("div");
                                     var span = document.createElement("span");
@@ -170,32 +170,26 @@
                                     div.style.marginTop = "35px";
                                     span.style.marginBottom = "15px";
                                     span.textContent = "${chat.message}";
-                                    span2.textContent = "${chat.username}";
+                                    span2.textContent = "${chat.usersTb.username}";
                                     span2.style.color = "#615f5f";
                                     div.appendChild(span);
                                     chatBox.appendChild(div);
                                     chatBox.appendChild(span2);
                                 </script>
 
-                            </c:forEach>-->
+                            </ui:repeat>
                         </div>
-                        <div class="wrapperinbox">
-                            <div class="inboxsend">
-                                <form action="groupchat" method="POST" id="sendForm"></form>
-                                <input id="inputid" type="text" placeholder="Type Message…" name="messageGroup" form="sendForm" 
-                                       pattern="[A-Za-z0-9 ]+" 
-                                       oninvalid="this.setCustomValidity(' ')"
-                                       oninput="setCustomValidity(' ')"
-                                       onchange="try {
-                                                   setCustomValidity('')
-                                               } catch (e) {
-                                               }"
-                                       />
-                                <button type="submit" name="group" form="sendForm" class="btnSend">
-                                    <img class="logo" onclick="append()" src="../resources/img/send.png" alt="" />
-                                </button>
+                        <h:form>
+
+                            <div class="wrapperinbox">
+                                <div class="inboxsend">
+                                    <h:inputText id="inputid" value="#{groupChatBean.groupChatTb.message}" />
+                                    <h:inputHidden value="#{groupChatBean.groupID}"/>
+                                    <h:commandButton styleClass="joinbtn2" value="SEND" actionListener="#{groupChatBean.sendChat()}"/>
+                                </div>
                             </div>
-                        </div>
+                        </h:form>
+
                     </div>
                     <div class="startchat">
                         <img src="https://image.freepik.com/free-vector/online-communication-with-students-distance-learning_82574-6145.jpg"/>
@@ -267,7 +261,7 @@
                     <div class="centerdiv">
                         <div class="leftdiv2">
                             <p class="pgroupname">INVITE YOUR FRIEND</p>
-                            <p:inputText class="inputgroup" placeholder="Friend ID" id="inputInvite"/>
+                            <p:inputText class="inputgroup" placeholder="Friend ID" id="inputInvite" value="#{groupUserBean.groupUserTb.usersTb.id}"/>
                             <p:inputText class="inputgroup" placeholder="Group ID" value="#{groupUserBean.groupUserTb.groupTb.id}"/>
                         </div>
                         <div class="rightdiv">
