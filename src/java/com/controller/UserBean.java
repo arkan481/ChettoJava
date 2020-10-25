@@ -34,6 +34,7 @@ public class UserBean {
     private UsersTb newUser = new UsersTb();
     private String cofirmPassword = "";
     private UserDAO userDAO = new UserDAO();
+    private UsersTb user = new UsersTb();
 
     /**
      * Creates a new instance of UserBean
@@ -64,9 +65,9 @@ public class UserBean {
         String userID = "";
         try {
             userID = session.getAttribute("user_session_id").toString();
-            
+
         } catch (NullPointerException e) {
-            
+
             e.printStackTrace();
             return "Not Logged In";
         }
@@ -95,6 +96,23 @@ public class UserBean {
                 Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    public void updatePassword() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        
+        int updatingUserID = Integer.parseInt(session.getAttribute("user_session_id").toString());
+        
+        user.setId(updatingUserID);
+        
+        user.setUsername(userDAO.getUsernameById(updatingUserID).getUsername());
+        
+        userDAO.updatePassword(user);
+    }
+
+    public UsersTb getUser() {
+        return user;
     }
 
     public void setCofirmPassword(String cofirmPassword) {

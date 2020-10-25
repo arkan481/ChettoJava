@@ -44,7 +44,7 @@ public class FriendDAO {
         try {
 
             session.beginTransaction();
-            Query qu = session.createQuery("FROM UserFriendTb G WHERE G.usersTbByAdder.id=:userId");
+            Query qu = session.createQuery("FROM UserFriendTb G WHERE G.usersTbByAdder.id=:userId or G.usersTbByAddee.id=:userId");
             qu.setParameter("userId", userID);
             userFriend = qu.list();
 

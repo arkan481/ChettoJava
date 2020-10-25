@@ -106,11 +106,16 @@ public class UserDAO {
                 = HibernateUtil.getSessionFactory().openSession();
         
         try {
-
+            session.beginTransaction();
+            session.update(usersTb);
+            session.flush();
+            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
+        
+        session.close();
     }
 
 }

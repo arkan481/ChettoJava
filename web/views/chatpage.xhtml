@@ -86,12 +86,17 @@
                             <div class="divgroup">
                                 <h:form>
                                     <ui:repeat value="#{groupUserBean.getUserGroup()}" var="group">
-                                        <a href="./chatpage.xhtml?group=#{group.groupTb.id}" class="chatbubble">
+                                        <a href="./chatpage.xhtml?group=#{group.groupTb.id}" class="chatbubble2">
                                             <div class="chatbubble">
-                                                <p>${group.groupTb.groupName}</p>
+                                                <span class="groupname">${group.groupTb.groupName}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+                                                    <h:commandLink actionListener="#{groupUserBean.leaveGroup(group)}" value="Leave" style="color: #FF5F5F"/>
+                                                </span>
+                                                <br/>
+                                                <br/>
+                                                <br/>
                                                 <div class="msghor">
                                                     <p class="msgtxt">${groupUserBean.getLatestMessage(group.groupTb.groupChatTbs)}</p>
-                                                    <div class="tooltip" onclick="copyFunction(#{group.groupTb.id})">
+                                                    <div class="tooltip" onclick="popupMember()">
                                                         <img class="copyicon" src="https://cdn3.iconfinder.com/data/icons/basic-1-blue-series/64/a-06-512.png"/>
                                                         <span class="tooltiptext" id="tttext">ID: #{group.groupTb.id}</span>
                                                     </div>
@@ -112,6 +117,7 @@
 
                                         <div class="chatbubble">
                                             <p>${friend.usersTbByAddee.username}</p>
+                                            <!--todo add if-->
                                             <div class="msghor">
                                                 <p onclick="popUpInvite('${friend.usersTbByAddee.id}')" class="msgtxt">Add to a group</p>
                                                 <div>
@@ -251,6 +257,32 @@
 
             </div>
         </div>
+        <div class="popupGroup" id="popupMember">
+
+            <h:form prependId="false">
+
+                <div class="groupDivWhite2">
+                    <span class="toptext">Group Members</span>
+                    <div class="centerdiv2">
+                        <h:form >
+
+                            <ui:repeat value="#{groupBean.getGroupMembers(param['group'])}" var="member">
+
+                                <p>#{member.usersTb.username}</p>
+                                <hr/>
+
+                            </ui:repeat>
+
+                        </h:form>
+                    </div>
+                    <div class="wrappercreate">
+                        <a onclick="closeMemberPopup()" href="#" class="topdesctext">Back</a>
+                    </div>
+                </div>
+
+            </h:form>
+        </div>
+
         <div class="popupGroup" id="popupInvite">
 
             <h:form prependId="false">
@@ -277,24 +309,28 @@
             </h:form>
         </div>
         <div class="popupGroup" id="popupPW">
-            <div class="groupDivWhite">
-                <span class="toptext">Change Your Password</span>
-                <span class="topdesctext">Secure your account</span>
-                <div class="centerdiv">
-                    <div class="leftdiv2">
-                        <p class="pgroupname">Change Password</p>
-                        <form action="changepassword" method="POST" id="pwForm"></form>
-                        <input required="true" type="password" class="inputgroup" placeholder="New Password" name="newpassword" form="pwForm"/>
+            <h:form>
+
+                <div class="groupDivWhite">
+                    <span class="toptext">Change Your Password</span>
+                    <span class="topdesctext">Secure your account</span>
+                    <div class="centerdiv">
+                        <div class="leftdiv2">
+                            <p class="pgroupname">Change Password</p>
+                            <p:inputText required="true" type="password" class="inputgroup" value="#{userBean.user.password}" placeholder="New Password"/>
+                        </div>
+                        <div class="rightdiv">
+                            <img class="comimg" src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Lock-512.png"/>
+                        </div>
                     </div>
-                    <div class="rightdiv">
-                        <img class="comimg" src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Lock-512.png"/>
+                    <div class="wrappercreate">
+                        <a onclick="closePWPopUp()" href="#" class="topdesctext">Back</a>
+                        <h:commandButton value="CHANGE" class="joinbtn2" actionListener="#{userBean.updatePassword()}"/>
                     </div>
                 </div>
-                <div class="wrappercreate">
-                    <a onclick="closePWPopUp()" href="#" class="topdesctext">Back</a>
-                    <button type="submit" class="joinbtn2" form="pwForm">CHANGE</button>
-                </div>
-            </div>
+
+            </h:form>
+
         </div>
 
         <ui:include src="/views/layouts/chat_script.xhtml" />

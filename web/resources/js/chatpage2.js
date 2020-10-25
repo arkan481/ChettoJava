@@ -275,6 +275,18 @@ function popUpInvite(userID) {
     console.log("this: "+userID);
 }
 
+function popupMember() {
+    var inputInvite = document.getElementById("inputInvite");
+    var groupPopUp = document.getElementById("popupMember");
+    groupPopUp.style.display = "flex";
+//    inputInvite.value = userID;
+}
+
+function closeMemberPopup() {
+    var groupPopUp = document.getElementById("popupMember");
+    groupPopUp.style.display = "none";
+}
+
 function closeInvitePopup() {
     var groupPopUp = document.getElementById("popupInvite");
     groupPopUp.style.display = "none";

@@ -7,6 +7,7 @@ package com.dao;
 
 import com.model.pojo.GroupTb;
 import com.model.pojo.GroupUserTb;
+import com.model.pojo.UserFriendTb;
 import com.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,27 +36,46 @@ public class GroupUserDAO {
         session.close();
     }
 
-        public List<GroupUserTb> getUserGroups(int userID) {
+    public List<GroupUserTb> getUserGroups(int userID) {
         Session session
                 = HibernateUtil.getSessionFactory().openSession();
-        
+
         List<GroupUserTb> userGroup = new ArrayList<>();
 
         try {
-            
+
             session.beginTransaction();
             Query qu = session.createQuery("FROM GroupUserTb G WHERE G.usersTb.id=:userId");
             qu.setParameter("userId", userID);
-            userGroup = qu.list();            
-            
+            userGroup = qu.list();
+
             session.getTransaction().commit();
-            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+
+        return userGroup;
+    }
+
+    public void leaveGroup(GroupUserTb groupUserTb) {
+        Session session
+                = HibernateUtil.getSessionFactory().openSession();
+        
+        try {
+            session.beginTransaction();
+            Query q = session.createQuery("delete GroupUserTb G where G.id =:id");
+            q.setParameter("id", groupUserTb.getId());
+            q.executeUpdate();
+            session.getTransaction().commit();
+
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
         
-        return userGroup;
+        session.close();
     }
 
 }

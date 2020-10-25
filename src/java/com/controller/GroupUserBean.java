@@ -69,6 +69,10 @@ public class GroupUserBean {
 
         return lastMessage;
     }
+    
+    public void leaveGroup(GroupUserTb groupUserTb) {
+        groupUserDAO.leaveGroup(groupUserTb);
+    }
 
     public GroupUserTb getGroupUserTb() {
         return groupUserTb;
